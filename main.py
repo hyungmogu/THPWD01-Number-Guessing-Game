@@ -40,13 +40,25 @@ def start_game():
     #3. Continuously prompt the player for a guess.
     attempts = 0
     while not game_over:
-        guess = int(input("Make a guess: "))
+
+        # a. Check if user has chosen a correct data type (int). if not, prompt them to guess again
+        try:
+            guess = input("Make a guess ({0} - {1}): ".format(0, 10))
+
+            if type(guess) != int:
+                raise Exception
+        except Exception:
+            print("Please make sure the guess is of correct type (integer).")
+            print("Try again")
+            continue
+
+        guess = int(guess)
         attempts += 1
         if solution < guess:
-            #  a. If the guess greater than the solution, display to the player "It's lower".
+            #  b. If the guess greater than the solution, display to the player "It's lower".
             print("It's lower")
         elif solution > guess:
-            #  b. If the guess is less than the solution, display to the player "It's higher".
+            #  c. If the guess is less than the solution, display to the player "It's higher".
             print("It's higher")
         else:
             # 4. Once the guess is correct, stop looping, inform the user they "Got it"
