@@ -45,7 +45,7 @@ def start_game():
         try:
             guess = input("Make a guess ({0} - {1}): ".format(0, 10))
 
-            if type(guess) != int:
+            if float(guess) - int(guess) > 0:
                 raise Exception
         except Exception:
             print("Please make sure the guess is of correct type (integer).")
